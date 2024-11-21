@@ -268,39 +268,39 @@ app.get('/hotels/sort/reviews', (req, res) => {
   res.json({ hotels: result });
 });
 
-function amenityCall(hotelCopy, amenity) {
-  return hotelCopy?.amenity?.toUpperCase() === amenity?.toUpperCase();
+function filterByAmenity(hotel, amenity) {
+  return hotel?.amenity?.toUpperCase() === amenity?.toUpperCase();
 }
 
 app.get('/hotels/filter/amenity', (req, res) => {
   let amenity = req.query.amenity;
   let hotelCopy = hotels.slice();
-  let result = hotelCopy.filter((hotelCopy) => amenityCall(hotelCopy, amenity));
+  let result = hotelCopy.filter((hotel) => filterByAmenity(hotel, amenity));
   res.json({ hotels: result });
 });
 
-function countryFilter(hotelCopy, country) {
-  return hotelCopy?.country?.toUpperCase() === country?.toUpperCase();
+function filterByCountry (hotel, country) {
+  return hotel?.country?.toUpperCase() === country?.toUpperCase();
 }
 
 app.get('/hotels/filter/country', (req, res) => {
   let country = req.query.country;
   let hotelCopy = hotels.slice();
-  let result = hotelCopy.filter((hotelCopy) =>
-    countryFilter(hotelCopy, country)
+  let result = hotelCopy.filter((hotel) =>
+  filterByCountry(hotel, country)
   );
   res.json({ hotels: result });
 });
 
-function categoryFilter(hotelCopy, category) {
-  return hotelCopy?.category?.toUpperCase() === category?.toUpperCase();
+function filterByCategory (hotel, category) {
+  return hotel?.category?.toUpperCase() === category?.toUpperCase();
 }
 
 app.get('/hotels/filter/category', (req, res) => {
   let category = req.query.category;
   let hotelCopy = hotels.slice();
-  let result = hotelCopy.filter((hotelCopy) =>
-    categoryFilter(hotelCopy, category)
+  let result = hotelCopy.filter((hotel) =>
+  filterByCategory(hotel, category)
   );
   res.json({ hotels: result });
 });
